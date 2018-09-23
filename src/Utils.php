@@ -22,10 +22,11 @@ class Utils
         $config = config('generators');
 
         $result = [
-            'path' => $config['source']['root'].'/'.$config['source'][$type],
-            'suffix' => $config['suffix'][$type],
+            'root'        => $config['source']['root'],
+            'path'        => $config['source'][$type],
+            'suffix'      => $config['suffix'][$type],
             'auto_import' => $config['misc']['auto_import'],
-            'use_mix' => $config['misc']['use_mix'],
+            'use_mix'     => $config['misc']['use_mix'],
         ];
 
         if($hasTest) {
@@ -106,6 +107,7 @@ class Utils
     {
         $index_path = base_path(config('generators.source.root'))."/index.$type.js";
         $module = self::moduleName($type);
+        $config = self::getConfig($type, false);
         $studly_name = studly_case($name);
         $class_name = $studly_name.ucfirst(rtrim($type, "s")); // NameComponent, NameDirective, NameConfig, NameService, NameFilter
         $content;
@@ -119,7 +121,7 @@ class Utils
         
         $vars = [
             'file_content' => $content,
-            'new_import'   => "import {$class_name} from './$type/$name$suffix';",
+            'import_path'   => "./".$config['path']."/$studly_name/$name$suffix",
             'studly_name'  => lcfirst($studly_name),
             'class_name'   => $class_name,
         ];

@@ -32,7 +32,7 @@ class AngularRun extends Command
     {
         parent::__construct();
 
-        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+        view()->addNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**
@@ -54,7 +54,7 @@ class AngularRun extends Command
                     'vars'     => [
                         'studly_name' => $studly_name,
                     ],
-                    'path'     => $config['path'],
+                    'path'     => $config['root'].'/'.$config['path'],
                     'name'     => $name.$config['suffix'],
                 ],
             ],

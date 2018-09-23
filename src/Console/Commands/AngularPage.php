@@ -31,7 +31,7 @@ class AngularPage extends Command
     {
         parent::__construct();
 
-        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+        view()->addNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**
@@ -46,7 +46,7 @@ class AngularPage extends Command
 
         $config = Utils::getConfig('pages', false);
 
-        if(File::exists($config['path'].'/'.$name)) {
+        if(File::exists($config['root'].'/'.$config['path'].'/'.$name)) {
             $this->info("Page already exists.");
             return false;
         } else {

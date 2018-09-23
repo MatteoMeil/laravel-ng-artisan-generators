@@ -31,7 +31,7 @@ class AngularDialog extends Command
     {
         parent::__construct();
 
-        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+        view()->addNamespace('Stubs', __DIR__.'/Stubs');
     }
 
     /**
@@ -54,7 +54,7 @@ class AngularDialog extends Command
                     'vars'     => [
                         'human_redable' => $human_readable,
                     ],
-                    'path'     => $config['path'].'/'.$name,
+                    'path'     => $config['root'].'/'.$config['path'].'/'.$name,
                     'name'     => $name.$config['suffix']['html'],
                 ],
                 [
@@ -62,7 +62,7 @@ class AngularDialog extends Command
                     'vars'     => [
                         'studly_name' => $studly_name,
                     ],
-                    'path'     => $config['path'].'/'.$name,
+                    'path'     => $config['root'].'/'.$config['path'].'/'.$name,
                     'name'     => $name.$config['suffix']['js'],
                 ],
             ],

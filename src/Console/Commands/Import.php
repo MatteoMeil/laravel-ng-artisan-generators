@@ -34,7 +34,7 @@ class Import extends Command
     {
         parent::__construct();
         
-        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+        view()->addNamespace('Stubs', __DIR__.'/Stubs');
     }   
 
     /**
@@ -86,14 +86,14 @@ class Import extends Command
             $names; 
             $suffix;
             
-            if(File::exists($config['path'])) {
+            if(File::exists($config['root'].'/'.$config['path'])) {
                 if($type == 'components') {
                     $suffix = rtrim($config['suffix']['js'], ".js");
-                    $names = File::directories($config['path']);
+                    $names = File::directories($config['root'].'/'.$config['path']);
 
                 } else {
                     $suffix = rtrim($config['suffix'], ".js");
-                    $names = File::files($config['path']);
+                    $names = File::files($config['root'].'/'.$config['path']);
                 }
 
                 $refreshed = false;

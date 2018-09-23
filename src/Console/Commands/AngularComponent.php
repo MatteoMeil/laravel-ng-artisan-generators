@@ -33,7 +33,7 @@ class AngularComponent extends Command
     {
         parent::__construct();
         
-        view()->replaceNamespace('Stubs', __DIR__.'/Stubs');
+        view()->addNamespace('Stubs', __DIR__.'/Stubs');
     }   
 
     /**
@@ -57,7 +57,7 @@ class AngularComponent extends Command
                 [
                     'template' => 'Stubs::AngularComponent.html',
                     'vars'     => [],
-                    'path'     => $config['path'].'/'.$name,
+                    'path'     => $config['root'].'/'.$config['path'].'/'.$name,
                     'name'     => $name.$config['suffix']['html'],
                 ],
                 [
@@ -67,7 +67,7 @@ class AngularComponent extends Command
                         'name'        => $name,
                         'use_mix'     => $config['use_mix'],
                     ],
-                    'path'     => $config['path'].'/'.$name,
+                    'path'     => $config['root'].'/'.$config['path'].'/'.$name,
                     'name'     => $name.$config['suffix']['js'],
                 ],
                 [
@@ -75,7 +75,7 @@ class AngularComponent extends Command
                     'vars'     => [
                         'ng_component' => $ng_component,
                     ],
-                    'path'     => $config['path'].'/'.$name,
+                    'path'     => $config['root'].'/'.$config['path'].'/'.$name,
                     'name'     => $name.$config['suffix']['stylesheet'],
                 ],
             ],
