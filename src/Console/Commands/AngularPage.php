@@ -50,11 +50,11 @@ class AngularPage extends Command
             $this->info("Page already exists.");
             return false;
         } else {
-            File::makeDirectory($config['path'].'/'.$name, 0775, true);
+            File::makeDirectory($config['root'].'/'.$config['path'].'/'.$name, 0775, true);
         }
 
-        File::put($config['path'].'/'.$name.'/'.$name.$config['suffix']['html'], '');
-        File::put($config['path'].'/'.$name.'/'.$name.$config['suffix']['stylesheet'], '');
+        File::put($config['root'].'/'.$config['path'].'/'.$name.'/'.$name.$config['suffix']['html'], '');
+        File::put($config['root'].'/'.$config['path'].'/'.$name.'/'.$name.$config['suffix']['stylesheet'], '');
 
         $this->info('Page created successfully.');
     }

@@ -121,7 +121,9 @@ class Utils
         
         $vars = [
             'file_content' => $content,
-            'import_path'   => "./".$config['path']."/$studly_name/$name$suffix",
+            'path'         => $config['path'],
+            'name'         => $name,
+            'suffix'       => $suffix,
             'studly_name'  => lcfirst($studly_name),
             'class_name'   => $class_name,
         ];
